@@ -7,6 +7,8 @@ import com.xiao.boot.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AdminServiceImpl implements AdminService {
 
@@ -21,4 +23,10 @@ public class AdminServiceImpl implements AdminService {
     public Integer addStudent(Student student) {
         return adminMapper.addStudent(student);
     }
+
+    @Override
+    public List<Student> queryALLStudents(){return adminMapper.queryALLStudents();}
+
+    @Override
+    public List<Teacher> queryALLTeachers(){return adminMapper.queryALLTeachers();}
 }

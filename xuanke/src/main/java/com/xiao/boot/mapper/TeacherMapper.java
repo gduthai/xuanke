@@ -18,6 +18,6 @@ public interface TeacherMapper {
 
     public List<Map<String,Object>> findAllCourseByTeacherId(String id);
 
-    public List<Student> findStudents(String courseId,String teacherId);
+    public List<Student> findStudents(String teacherId);
 
 }

@@ -21,6 +21,6 @@
     </select>
 
     <select id="findStudents" resultType="com.xiao.boot.bean.Student" parameterType="string">
-        select * from student where id in (select student_id from xuanke where course_id = #{courseId} and teacher_id = #{teacherId})
+        select * from student where id in (select student_id from xuanke where  teacher_id = #{teacherId})
     </select>
 </mapper>

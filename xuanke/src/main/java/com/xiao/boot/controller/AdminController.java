@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
+import java.util.List;
+
 @Controller
 public class AdminController {
 
@@ -47,5 +50,27 @@ public class AdminController {
             ra.addAttribute("message","添加失败");
         }
         return "redirect:/add_student_page";
+    }
+
+    @GetMapping("/show_all_student_page")
+    public String queryALLStudent(HttpSession session, Model model){
+        List<Student> students = adminService.queryALLStudents();
+        if (students.size() == 0){
+            model.addAttribute("message","没有学生");
+            return "main";
+        }
+        model.addAttribute("students",students);
+        return "admin/showAllstudentPage";
+    }
+
+    @GetMapping("/show_all_teacher_page")
+    public String queryALLTeachers(HttpSession session, Model model){
+        List<Teacher> students = adminService.queryALLTeachers();
+        if (students.size() == 0){
+            model.addAttribute("message","没有老师");
+            return "main";
+        }
+        model.addAttribute("students",students);
+        return "admin/showAllTeacherPage";
     }
 }

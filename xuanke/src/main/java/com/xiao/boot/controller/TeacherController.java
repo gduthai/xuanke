@@ -66,10 +66,10 @@ public class TeacherController {
         return "teacher/courseInfoPage";
     }
 
-    @GetMapping("/findStudents")
-    public String findStudents(@RequestParam("courseId") String courseId,HttpSession session,Model model){
+    @GetMapping("/show_student_Page")
+    public String findStudents(HttpSession session,Model model){
         String teacherId = ((User)session.getAttribute("user")).getUsername();
-        List<Student> students = teacherService.findStudents(courseId,teacherId);
+        List<Student> students = teacherService.findStudents(teacherId);
         if (students.size() == 0){
             model.addAttribute("message","暂无学生选本文课");
             return "main";
@@ -77,4 +77,8 @@ public class TeacherController {
         model.addAttribute("students",students);
         return "teacher/studentInfoPage";
     }
+
+
+
+
 }

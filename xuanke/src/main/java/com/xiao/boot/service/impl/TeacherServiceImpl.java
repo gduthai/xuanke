@@ -37,7 +37,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public List<Student> findStudents(String courseId, String teacherId) {
-        return teacherMapper.findStudents(courseId,teacherId);
+    public List<Student> findStudents(String teacherId) {
+        return teacherMapper.findStudents(teacherId);
     }
 }
