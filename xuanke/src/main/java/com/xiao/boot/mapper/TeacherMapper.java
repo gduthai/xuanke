@@ -12,12 +12,12 @@ public interface TeacherMapper {
 
     public int addCourse(Course course);
 
-    public Teacher findTeacherById(String id);
+    public Teacher findTeacherById(String id);//修改名称
 
-    public int updateSelfInfo(Teacher teacher);
+    public int updateSelfInfo(Teacher teacher);//修改名称
 
-    public List<Map<String,Object>> findAllCourseByTeacherId(String id);
+    public List<Map<String,Object>> findAllCourseByTeacherId(String id);//修改名称
 
-    public List<Student> findStudents(String teacherId);
+    public List<Student> findStudents(String teacherId);//修改名称
 
 }
