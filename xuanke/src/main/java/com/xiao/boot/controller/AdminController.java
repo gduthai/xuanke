@@ -1,7 +1,9 @@
 package com.xiao.boot.controller;
 
+import com.xiao.boot.bean.Course;
 import com.xiao.boot.bean.Student;
 import com.xiao.boot.bean.Teacher;
+import com.xiao.boot.bean.User;
 import com.xiao.boot.mapper.AdminMapper;
 import com.xiao.boot.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,16 @@ public class AdminController {
         return "admin/addStudentPage";
     }
 
+    @GetMapping("/add_course_user_page")
+    public String add_course_page(){
+        return "admin/addCoursePage";
+    }
+
+    @GetMapping("/add_user_page")
+    public String add_user_page(){
+        return "admin/addUserPage";
+    }
+
     @PostMapping("/admin/add_teacher")
     public String addTeacher(Teacher teacher, RedirectAttributes ra){
         Integer row = adminService.addTeacher(teacher);
@@ -50,6 +62,29 @@ public class AdminController {
             ra.addAttribute("message","添加失败");
         }
         return "redirect:/add_student_page";
+    }
+
+    @PostMapping("/admin/add_course")
+    public String addCourse(Course course, RedirectAttributes ra){
+        course.setNum(0);
+        Integer row = adminService.addCourse(course);
+        if (row == 1){
+            ra.addAttribute("message","添加成功");
+        }else {
+            ra.addAttribute("message","添加失败");
+        }
+        return "redirect:/add_course_user_page";
+    }
+
+    @PostMapping("/admin/add_user")
+    public String addUser(User user, RedirectAttributes ra){
+        Integer row = adminService.addUser(user);
+        if (row == 1){
+            ra.addAttribute("message","添加成功");
+        }else {
+            ra.addAttribute("message","添加失败");
+        }
+        return "redirect:/add_user_page";
     }
 
     @GetMapping("/show_all_student_page")
@@ -73,4 +108,19 @@ public class AdminController {
         model.addAttribute("students",students);
         return "admin/showAllTeacherPage";
     }
+
+    @GetMapping("/show_all_user_page")
+    public String queryALLUsers(HttpSession session, Model model){
+        List<User> students = adminService.queryAllUsers();
+        if (students.size() == 0){
+            model.addAttribute("message","没有用户");
+            return "main";
+        }
+        model.addAttribute("students",students);
+        return "admin/showAllUserPage";
+    }
+
+
+
+
 }

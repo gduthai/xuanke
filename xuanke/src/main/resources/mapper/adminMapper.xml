@@ -11,6 +11,15 @@
     <insert id="addStudent">
         insert into student values (#{id},#{name},#{sex},#{classname},#{major})
     </insert>
+    <!--    添加课程信息-->
+    <insert id="addCourse">
+        insert into Course values (#{id},#{name},#{total},#{num},#{teacher})
+    </insert>
+
+    <!--    添加课程信息-->
+    <insert id="addUser">
+        insert into User values (#{username},#{password},#{type})
+    </insert>
     <!-- 查看所有学生信息-->
     <select id="queryALLStudents" parameterType="string" resultType="com.xiao.boot.bean.Student">
          select * from student </select>
@@ -18,4 +27,10 @@
     <!-- 查看所有教师信息-->
     <select id="queryALLTeachers" parameterType="string" resultType="com.xiao.boot.bean.Teacher">
          select * from teacher </select>
+
+    <!-- 查看所有教师信息-->
+    <select id="queryAllUsers" parameterType="string" resultType="com.xiao.boot.bean.User">
+         select * from user </select>
+
+
 </mapper>
